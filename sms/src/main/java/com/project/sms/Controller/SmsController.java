@@ -78,6 +78,11 @@ public class SmsController{
         stu.setTeacher(teacher);
         return repository.save(stu);
     }
+    //删除学生
+    @GetMapping("/delete")
+    public String del(@RequestParam("name") String name){
+        
+    }
     //配置学生班级
     @PutMapping("/setclass/{id}")
     public Stu setclass(@PathVariable("id") Integer id,
@@ -91,4 +96,9 @@ public class SmsController{
         return null;
     }
     //配置辅导员班级
+    @PutMapping("/updateclass/{class}")
+    public  Object updateclass(@PathVariable("class") String clazz,
+                            @RequestParam("teacher") String teacher){
+        return  repository.updateclaz(teacher,clazz);
+    }
 }
