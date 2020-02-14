@@ -11,6 +11,7 @@ public class User {
     private Integer id;
     private String username;
     private String password;
+    private String perm;
 
     public Integer getId() {
         return id;
@@ -34,5 +35,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPerm() {
+        return perm;
+    }
+
+    public void setPerm(String perm) {
+        this.perm = perm;
     }
 }

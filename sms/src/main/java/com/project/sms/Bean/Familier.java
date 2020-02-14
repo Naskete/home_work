@@ -11,9 +11,11 @@ public class Familier {
     private Integer id;
     private String name;
     private String Ffamilier;
+    private Integer Ftel;
     private String Fworkplace;
     private String Frelative;
     private String Sfamilier;
+    private Integer Stel;
     private String Sworkplace;
     private String Srelative;
 
