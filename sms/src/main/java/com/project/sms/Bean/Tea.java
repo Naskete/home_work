@@ -2,12 +2,9 @@ package com.project.sms.Bean;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="student",catalog="sms")
-public class Stu {
-    //学号
+public class Tea {
     @Id
     private Integer id;
     //姓名
@@ -18,14 +15,6 @@ public class Stu {
     private Integer QQ;
     //微信号
     private String wechatnum;
-    //所属学院
-    private String college;
-    //专业
-    private String mainpro;
-    //所属班级
-    private String clazz;
-    //辅导员
-    private String teacher;
 
     public Integer getId() {
         return id;
@@ -65,37 +54,5 @@ public class Stu {
 
     public void setWechatnum(String wechatnum) {
         this.wechatnum = wechatnum;
-    }
-
-    public String getCollege() {
-        return college;
-    }
-
-    public void setCollege(String college) {
-        this.college = college;
-    }
-
-    public String getMainpro() {
-        return mainpro;
-    }
-
-    public void setMainpro(String mainpro) {
-        this.mainpro = mainpro;
-    }
-
-    public String getClazz() {
-        return clazz;
-    }
-
-    public void setClazz(String clazz) {
-        this.clazz = clazz;
-    }
-
-    public String getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(String teacher) {
-        this.teacher = teacher;
     }
 }
