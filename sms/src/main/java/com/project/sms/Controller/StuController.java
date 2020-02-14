@@ -2,9 +2,7 @@ package com.project.sms.Controller;
 
 import com.project.sms.Bean.Stu;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,5 +34,28 @@ public class StuController{
     @GetMapping("findbyname")
     public Object findByName(@RequestParam("name") String name){
         return repository.findByName(name);
+    }
+    //查看家庭成员信息
+    /*@GetMapping("findfamilier")
+    public Object findfamilier(@RequestParam("name") String name){
+        return repository.findFamilier(name);
+    }*/
+    //修改学生信息
+    @PutMapping("/modify/{id}")
+    private Stu modify(@PathVariable("id") Integer id,
+                       @RequestParam("name") String name,
+                       @RequestParam("college") String college,
+                       @RequestParam("clazz") String clazz,
+                       @RequestParam("teacher") String teacher){
+        Optional stu=repository.findById(id);
+        if(stu.isPresent()){
+            Stu newstu= (Stu) stu.get();
+            newstu.setName(name);
+            newstu.setCollege(college);
+            newstu.setClazz(clazz);
+            newstu.setTeacher(teacher);
+            return repository.save(newstu);
+        }
+        return null;
     }
 }
