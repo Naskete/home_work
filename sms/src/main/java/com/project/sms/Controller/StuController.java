@@ -32,5 +32,9 @@ public class StuController{
     public Object findByClazz(@RequestParam("clazz") String clazz){
         return repository.findByClazz(clazz);
     }
-    //
+    //通过名字查询
+    @GetMapping("findbyname")
+    public Object findByName(@RequestParam("name") String name){
+        return repository.findByName(name);
+    }
 }
