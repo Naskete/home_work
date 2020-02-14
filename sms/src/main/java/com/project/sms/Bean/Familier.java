@@ -13,17 +13,17 @@ public class Familier {
     //学生姓名
     private String name;
     //家庭成员姓名（F,S分别代表first,second)
-    private String Ffamilier;
+    private String ffamilier;
     //联系电话
-    private Integer Ftel;
+    private Long ftel;
     //工作地址
-    private String Fworkplace;
+    private String fworkplace;
     //与学生关系
-    private String Frelative;
-    private String Sfamilier;
-    private Integer Stel;
-    private String Sworkplace;
-    private String Srelative;
+    private String frelative;
+    private String sfamilier;
+    private Long stel;
+    private String sworkplace;
+    private String srelative;
 
     public Integer getId() {
         return id;
@@ -42,66 +42,66 @@ public class Familier {
     }
 
     public String getFfamilier() {
-        return Ffamilier;
+        return ffamilier;
     }
 
     public void setFfamilier(String ffamilier) {
-        Ffamilier = ffamilier;
+        this.ffamilier = ffamilier;
+    }
+
+    public Long getFtel() {
+        return ftel;
+    }
+
+    public void setFtel(Long ftel) {
+        this.ftel = ftel;
     }
 
     public String getFworkplace() {
-        return Fworkplace;
-    }
-
-    public Integer getFtel() {
-        return Ftel;
-    }
-
-    public void setFtel(Integer ftel) {
-        Ftel = ftel;
+        return fworkplace;
     }
 
     public void setFworkplace(String fworkplace) {
-        Fworkplace = fworkplace;
+        this.fworkplace = fworkplace;
     }
 
     public String getFrelative() {
-        return Frelative;
+        return frelative;
     }
 
     public void setFrelative(String frelative) {
-        Frelative = frelative;
+        this.frelative = frelative;
     }
 
     public String getSfamilier() {
-        return Sfamilier;
+        return sfamilier;
     }
 
     public void setSfamilier(String sfamilier) {
-        Sfamilier = sfamilier;
+        this.sfamilier = sfamilier;
     }
 
-    public Integer getStel() {
-        return Stel;
+    public Long getStel() {
+        return stel;
     }
 
-    public void setStel(Integer stel) {
-        Stel = stel;
+    public void setStel(Long stel) {
+        this.stel = stel;
     }
 
     public String getSworkplace() {
-        return Sworkplace;
+        return sworkplace;
     }
 
     public void setSworkplace(String sworkplace) {
-        Sworkplace = sworkplace;
+        this.sworkplace = sworkplace;
     }
 
     public String getSrelative() {
-        return Srelative;
+        return srelative;
     }
 
     public void setSrelative(String srelative) {
-        Srelative = srelative;
+        this.srelative = srelative;
     }
 }

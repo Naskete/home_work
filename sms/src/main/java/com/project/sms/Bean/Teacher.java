@@ -12,7 +12,7 @@ public class Teacher {
     //电话号码
     private Long tel;
     //QQ号
-    private Integer QQ;
+    private Integer qq;
     //微信号
     private String wechatnum;
     //管理班级
@@ -42,12 +42,12 @@ public class Teacher {
         this.tel = tel;
     }
 
-    public Integer getQQ() {
-        return QQ;
+    public Integer getqq() {
+        return qq;
     }
 
-    public void setQQ(Integer QQ) {
-        this.QQ = QQ;
+    public void setQQ(Integer qq) {
+        this.qq = qq;
     }
 
     public String getWechatnum() {
