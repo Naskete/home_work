@@ -20,7 +20,7 @@ public class SmsController{
 
     @Autowired
     private FamRepository famRepository;
-//学生
+    
     //查找所有
     @GetMapping("/findall")
     public List<Stu> list(){
@@ -62,8 +62,8 @@ public class SmsController{
     public Object find(@RequestParam("name") String name){
         return famRepository.findFamilier(name);
     }
-//辅导员
-    //查看自己信息
+
+    //辅导员查看自己信息
     @GetMapping("/findme")
     public Object findself(@RequestParam("name") String name){
         return teaRepository.findByName(name);
@@ -85,7 +85,6 @@ public class SmsController{
         return null;
     }
 
-//管理员
     //通过名字查询学生
     @GetMapping("findbyname")
     public Object findByName(@RequestParam("name") String name){
