@@ -14,7 +14,4 @@ public interface TeaRepository extends JpaRepository<Teacher,Integer> {
     @Modifying
     @Query("update Teacher set clazz=?1 where name=?1")
     List<Teacher> updateclazz(String name,String clazz);
-
-    @Query("delete from Teacher where name=?1")
-    List<Teacher> deleteByName(String name);
 }

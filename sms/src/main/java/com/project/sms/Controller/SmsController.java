@@ -128,16 +128,16 @@ public class SmsController{
         }
         return null;
     }
-    //删除学生^
+    //删除学生
     @GetMapping("/delete")
-    public String del(@RequestParam("name") String name,
-                      @RequestParam("id") Integer id){
-        repository.deleteByName(name);
+    public String del(@RequestParam("id") Integer id){
+        repository.deleteById(id);
+        //repository.deleteByName(name);
         userRepository.deleteById(id);
         famRepository.deleteById(id);
         return "删除成功";
     }
-    //配置学生班级* (bug:设置相应老师)
+    //配置学生班级*^(bug:设置相应老师)
     @PutMapping("/setclass/{id}")
     public Stu setclass(@PathVariable("id") Integer id,
                         @RequestParam("clazz") String clazz){
@@ -189,11 +189,11 @@ public class SmsController{
         }
         return null;
     }
-    //删除辅导员^SQL问题
+    //删除辅导员
     @GetMapping("/deleteteacher")
-    public String deleteteacher(@RequestParam("name") String name,@RequestParam("id") Integer id){
-        teaRepository.deleteByName(name);
-        //userRepository.deleteById(id);
+    public String deleteteacher(@RequestParam("id") Integer id){
+        teaRepository.deleteById(id);
+        userRepository.deleteById(id);
         return "删除成功";
     }
     //配置辅导员班级^Could not get any response

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface StuRepository extends JpaRepository<Stu,Integer> {
@@ -18,7 +19,4 @@ public interface StuRepository extends JpaRepository<Stu,Integer> {
     @Modifying
     @Query("update Stu set teacher=?1 where clazz=?1")
     List<Stu> updateclaz(String teacher,String clazz);
-
-    @Query("delete from Stu where name=?1")
-    List<Stu> deleteByName(String name);
 }
