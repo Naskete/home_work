@@ -8,11 +8,17 @@ import javax.persistence.Table;
 @Table(name = "familier")
 public class Familier {
     @Id
+    //学生学号
     private Integer id;
+    //学生姓名
     private String name;
+    //家庭成员姓名（F,S分别代表first,second)
     private String Ffamilier;
+    //联系电话
     private Integer Ftel;
+    //工作地址
     private String Fworkplace;
+    //与学生关系
     private String Frelative;
     private String Sfamilier;
     private Integer Stel;
@@ -47,6 +53,14 @@ public class Familier {
         return Fworkplace;
     }
 
+    public Integer getFtel() {
+        return Ftel;
+    }
+
+    public void setFtel(Integer ftel) {
+        Ftel = ftel;
+    }
+
     public void setFworkplace(String fworkplace) {
         Fworkplace = fworkplace;
     }
@@ -65,6 +79,14 @@ public class Familier {
 
     public void setSfamilier(String sfamilier) {
         Sfamilier = sfamilier;
+    }
+
+    public Integer getStel() {
+        return Stel;
+    }
+
+    public void setStel(Integer stel) {
+        Stel = stel;
     }
 
     public String getSworkplace() {

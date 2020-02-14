@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Tea {
+public class Teacher {
     @Id
     private Integer id;
     //姓名
@@ -15,6 +15,8 @@ public class Tea {
     private Integer QQ;
     //微信号
     private String wechatnum;
+    //管理班级
+    private  String clazz;
 
     public Integer getId() {
         return id;
@@ -54,5 +56,13 @@ public class Tea {
 
     public void setWechatnum(String wechatnum) {
         this.wechatnum = wechatnum;
+    }
+
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
     }
 }
