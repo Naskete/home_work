@@ -95,7 +95,7 @@ public class SmsController{
         return repository.findByName(name);
     }
     //增加学生
-    @PostMapping("/add")
+    @PostMapping("/addstudent")
     public Stu add(@RequestParam("id") Integer id, @RequestParam("name") String name, @RequestParam("tel") Long tel,
                    @RequestParam("QQ") Integer qq, @RequestParam("wechatnum") String wechat, @RequestParam("college") String college,
                    @RequestParam("mainpro") String mainpro, @RequestParam("clazz") String clazz, @RequestParam("teacher") String teacher){
@@ -113,6 +113,7 @@ public class SmsController{
         user.setId(id);
         user.setUsername("stu"+id);
         user.setPassword("123456");
+        user.setPerm("student");
         userRepository.save(user);
         return repository.save(stu);
     }
@@ -129,15 +130,14 @@ public class SmsController{
         return null;
     }
     //删除学生
-    @GetMapping("/delete")
+    @GetMapping("/deletestudent")
     public String del(@RequestParam("id") Integer id){
         repository.deleteById(id);
-        //repository.deleteByName(name);
         userRepository.deleteById(id);
         famRepository.deleteById(id);
         return "删除成功";
     }
-    //配置学生班级*^(bug:设置相应老师)
+    //配置学生班级(bug:设置相应老师)
     @PutMapping("/setclass/{id}")
     public Stu setclass(@PathVariable("id") Integer id,
                         @RequestParam("clazz") String clazz){
@@ -145,6 +145,9 @@ public class SmsController{
         if(stu.isPresent()){
             Stu newstu=(Stu) stu.get();
             newstu.setClazz(clazz);
+            Teacher t=teaRepository.findByClazz(clazz);
+            String tea=t.getName();
+            newstu.setTeacher(tea);
             return repository.save(newstu);
         }
         return null;
@@ -200,8 +203,8 @@ public class SmsController{
     @PutMapping("/updateclass/{class}")
     public  String updateclass(@PathVariable("class") String clazz,
                             @RequestParam("teacher") String teacher){
-            repository.updateclaz(teacher,clazz);
-            teaRepository.updateclazz(teacher,clazz);
+            //repository.updateclaz(teacher,clazz);
+            //teaRepository.updateclazz(teacher,clazz);
             return "修改成功";
     }
 }

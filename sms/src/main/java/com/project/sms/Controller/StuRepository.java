@@ -16,7 +16,8 @@ public interface StuRepository extends JpaRepository<Stu,Integer> {
     @Query("select s from Stu s where s.name=?1")
     List<Stu> findByName(String name);
 
+    @Query("UPDATE Stu u SET u.teacher=?2 WHERE u.clazz=?1")
     @Modifying
-    @Query("update Stu set teacher=?1 where clazz=?1")
-    List<Stu> updateclaz(String teacher,String clazz);
+    @Transactional
+    List<Stu> updateTeacher(String teacher, String clazz);
 }
