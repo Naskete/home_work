@@ -199,12 +199,19 @@ public class SmsController{
         userRepository.deleteById(id);
         return "删除成功";
     }
-    //配置辅导员班级^Could not get any response
-    @PutMapping("/updateclass/{class}")
-    public  String updateclass(@PathVariable("class") String clazz,
+    //配置辅导员班级
+    @PutMapping("/updateclass/{id}")
+    public  String updateclass(@PathVariable("id") Integer id,@RequestParam("clazz") String clazz,
                             @RequestParam("teacher") String teacher){
-            //repository.updateclaz(teacher,clazz);
-            //teaRepository.updateclazz(teacher,clazz);
-            return "修改成功";
+            Optional tea=teaRepository.findById(id);
+            System.out.println("开始if");
+            if(tea.isPresent()) {
+                Teacher t = (Teacher) tea.get();
+                t.setClazz(clazz);
+                teaRepository.save(t);
+                //repository.updateTeacher(teacher,clazz);
+                return "修改成功";
+            }
+            return null;
     }
 }
