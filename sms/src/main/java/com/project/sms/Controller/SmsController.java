@@ -29,18 +29,18 @@ public class SmsController{
     @Autowired
     private UserRepository userRepository;
 
-    //查找所有
+    //查找所有学生
     @GetMapping("/user/findall")
     public List<Stu> list(){
         return repository.findAll();
     }
 
-    //通过学号
+    //通过学号查找学生
     @GetMapping("/user/findbyid")
     public Object findById(@RequestParam("id") Integer id){
         return repository.findById(id);
     }
-    //通过班级查询
+    //通过班级查询学生
     @GetMapping("/user/findbyclass")
     public Object findByClazz(@RequestParam("clazz") String clazz){
         return repository.findByClazz(clazz);
@@ -76,7 +76,7 @@ public class SmsController{
     public Object findself(@RequestParam("name") String name){
         return teaRepository.findByName(name);
     }
-    //修改学生信息通过id
+    //辅导员修改学生信息，通过id
     @PutMapping("/user/modify/{id}")
     private Stu modifystudent(@PathVariable("id") Integer id, @RequestParam("name") String name,
                             @RequestParam("tel") Long tel, @RequestParam("QQ") Integer qq,
@@ -93,12 +93,12 @@ public class SmsController{
         return null;
     }
 
-    //通过名字查询学生
+    //管理员通过名字查询学生
     @GetMapping("/user/findbyname")
     public Object findByName(@RequestParam("name") String name){
         return repository.findByName(name);
     }
-    //增加学生
+    //管理员增加学生
     @PostMapping("/user/addstudent")
     public Stu add(@RequestParam("id") Integer id, @RequestParam("name") String name, @RequestParam("tel") Long tel,
                    @RequestParam("QQ") Integer qq, @RequestParam("wechatnum") String wechat, @RequestParam("college") String college,
@@ -121,7 +121,7 @@ public class SmsController{
         userRepository.save(user);
         return repository.save(stu);
     }
-    //修改学生信息
+    //管理员修改学生信息
     @PutMapping("/user/modifystudent/{id}")
     public Stu upadte(@PathVariable("id") Integer id,@RequestParam("college") String college,@RequestParam("mainpro") String mianpro){
         Optional stu=repository.findById(id);
@@ -133,7 +133,7 @@ public class SmsController{
         }
         return null;
     }
-    //删除学生
+    //管理员删除学生
     @GetMapping("/user/deletestudent")
     public String del(@RequestParam("id") Integer id){
         repository.deleteById(id);
@@ -141,7 +141,7 @@ public class SmsController{
         famRepository.deleteById(id);
         return "删除成功";
     }
-    //配置学生班级(bug:设置相应老师)
+    //管理员配置学生班级(bug:设置相应老师)
     @PutMapping("/user/setclass/{id}")
     public Stu setclass(@PathVariable("id") Integer id,
                         @RequestParam("clazz") String clazz){
@@ -156,12 +156,12 @@ public class SmsController{
         }
         return null;
     }
-    //查看辅导员信息
+    //管理员查看辅导员信息
     @GetMapping("/user/findteacher")
     public List<Teacher> findall(){
         return teaRepository.findAll();
     }
-    //增加辅导员
+    //管理员增加辅导员
     @PostMapping("/user/addteacher")
     public Teacher add(@RequestParam("id") Integer id,@RequestParam("name") String name,
                        @RequestParam("tel") Long tel,@RequestParam("qq") Integer qq,
@@ -181,7 +181,7 @@ public class SmsController{
         userRepository.save(user);
         return teaRepository.save(teacher);
     }
-    //修改辅导员信息
+    //管理员修改辅导员信息
     @PutMapping("/user/modifyteacher/{id}")
     public Teacher modify(@PathVariable("id") Integer id,
                           @RequestParam("tel") Long tel,@RequestParam("qq") Integer qq,
@@ -196,14 +196,14 @@ public class SmsController{
         }
         return null;
     }
-    //删除辅导员
+    //管理员删除辅导员
     @GetMapping("/user/deleteteacher")
     public String deleteteacher(@RequestParam("id") Integer id){
         teaRepository.deleteById(id);
         userRepository.deleteById(id);
         return "删除成功";
     }
-    //配置辅导员班级
+    //管理员配置辅导员班级
     @PutMapping("/user/updateclass/{id}")
     public  String updateclass(@PathVariable("id") Integer id,@RequestParam("clazz") String clazz,
                             @RequestParam("teacher") String teacher){
@@ -213,7 +213,7 @@ public class SmsController{
                 Teacher t = (Teacher) tea.get();
                 t.setClazz(clazz);
                 teaRepository.save(t);
-                //repository.updateTeacher(teacher,clazz);
+                //repository.updateTeacher(teacher,clazz);*
                 return "修改成功";
             }
             return null;

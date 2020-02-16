@@ -11,22 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class loginController {
-    /*需要修改，下面四个方法*/
     @GetMapping({"/","/index"})
     public String toindex(){ return "请登录"; }
 
-    @GetMapping("/user/add")
-    public String add(){
-        return "添加用户";
-    }
-
-    @GetMapping("/user/update")
-    public String update(){
-        return "更新用户";
-}
     @GetMapping("/tologin")
     public String login(){
-        return "登录界面";
+        return "请登录";
     }
 
     //登录
@@ -48,6 +38,9 @@ public class loginController {
     }
     @RequestMapping("/noauth")
     public String unauthorized(){
-        return "未授权，无法访问";
+        return "权限不足，无法访问";
     }
+
+    @GetMapping("/logout")
+    public String logout(){return "退出";}
 }

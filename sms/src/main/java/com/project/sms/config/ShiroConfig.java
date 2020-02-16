@@ -19,10 +19,32 @@ public class ShiroConfig {
         //添加shiro内置过滤器
         Map<String,String> filterMap=new LinkedHashMap<>();
 
-        filterMap.put("/user/add","perms[admin]");
+        //设置权限
+        filterMap.put("/user/findme","perms[teacher]");
 
-        filterMap.put("/user/update","perms[teacher]");
+        filterMap.put("/user/modify/*","perms[teacher]");
 
+        filterMap.put("/user/findbyname","perms[admin]");
+
+        filterMap.put("/user/addstudent","perms[admin]");
+
+        filterMap.put("/user/modifystudent/*","perms[admin]");
+
+        filterMap.put("/user/deletestudent","perms[admin]");
+
+        filterMap.put("/user/setclass/*","perms[admin]");
+
+        filterMap.put("/user/findteacher","perms[admin]");
+
+        filterMap.put("/user/addteacher","perms[admin]");
+
+        filterMap.put("/user/modifyteacher/*","perms[admin]");
+
+        filterMap.put("/user/deleteteacher","perms[admin]");
+
+        filterMap.put("/user/updateclass/*","perms[admin]");
+
+        //设置所有操作要登录后才能执行
         filterMap.put("/user/*","authc");
 
         //设置登录请求
