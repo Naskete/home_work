@@ -1,4 +1,4 @@
-package com.project.sms.Controller;
+package com.project.sms.mapper;
 
 import com.project.sms.Bean.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;

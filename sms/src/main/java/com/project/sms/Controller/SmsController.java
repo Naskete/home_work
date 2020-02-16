@@ -4,6 +4,10 @@ import com.project.sms.Bean.Familier;
 import com.project.sms.Bean.Stu;
 import com.project.sms.Bean.Teacher;
 import com.project.sms.Bean.User;
+import com.project.sms.mapper.FamRepository;
+import com.project.sms.mapper.StuRepository;
+import com.project.sms.mapper.TeaRepository;
+import com.project.sms.mapper.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,23 +30,23 @@ public class SmsController{
     private UserRepository userRepository;
 
     //查找所有
-    @GetMapping("/findall")
+    @GetMapping("/user/findall")
     public List<Stu> list(){
         return repository.findAll();
     }
 
     //通过学号
-    @GetMapping("findbyid")
+    @GetMapping("/user/findbyid")
     public Object findById(@RequestParam("id") Integer id){
         return repository.findById(id);
     }
     //通过班级查询
-    @GetMapping("findbyclass")
+    @GetMapping("/user/findbyclass")
     public Object findByClazz(@RequestParam("clazz") String clazz){
         return repository.findByClazz(clazz);
     }
     //创建家庭成员信息
-    @PostMapping("/addfamilier")
+    @PostMapping("/user/addfamilier")
     public Familier add(@RequestParam("id") Integer id,@RequestParam("name") String name,
                         @RequestParam("ffamilier") String ffam,@RequestParam("ftel") Long ftel,
                         @RequestParam("fworkplace") String fworkp,@RequestParam("frelative") String frel,
@@ -62,18 +66,18 @@ public class SmsController{
         return famRepository.save(fam);
     }
     //查看家庭成员信息
-    @GetMapping("/findfamilier")
+    @GetMapping("/user/findfamilier")
     public Object find(@RequestParam("name") String name){
         return famRepository.findFamilier(name);
     }
 
     //辅导员查看自己信息
-    @GetMapping("/findme")
+    @GetMapping("/user/findme")
     public Object findself(@RequestParam("name") String name){
         return teaRepository.findByName(name);
     }
     //修改学生信息通过id
-    @PutMapping("/modify/{id}")
+    @PutMapping("/user/modify/{id}")
     private Stu modifystudent(@PathVariable("id") Integer id, @RequestParam("name") String name,
                             @RequestParam("tel") Long tel, @RequestParam("QQ") Integer qq,
                             @RequestParam("wechatnum") String wechat){
@@ -90,12 +94,12 @@ public class SmsController{
     }
 
     //通过名字查询学生
-    @GetMapping("findbyname")
+    @GetMapping("/user/findbyname")
     public Object findByName(@RequestParam("name") String name){
         return repository.findByName(name);
     }
     //增加学生
-    @PostMapping("/addstudent")
+    @PostMapping("/user/addstudent")
     public Stu add(@RequestParam("id") Integer id, @RequestParam("name") String name, @RequestParam("tel") Long tel,
                    @RequestParam("QQ") Integer qq, @RequestParam("wechatnum") String wechat, @RequestParam("college") String college,
                    @RequestParam("mainpro") String mainpro, @RequestParam("clazz") String clazz, @RequestParam("teacher") String teacher){
@@ -118,7 +122,7 @@ public class SmsController{
         return repository.save(stu);
     }
     //修改学生信息
-    @PutMapping("/modifystudent/{id}")
+    @PutMapping("/user/modifystudent/{id}")
     public Stu upadte(@PathVariable("id") Integer id,@RequestParam("college") String college,@RequestParam("mainpro") String mianpro){
         Optional stu=repository.findById(id);
         if(stu.isPresent()){
@@ -130,7 +134,7 @@ public class SmsController{
         return null;
     }
     //删除学生
-    @GetMapping("/deletestudent")
+    @GetMapping("/user/deletestudent")
     public String del(@RequestParam("id") Integer id){
         repository.deleteById(id);
         userRepository.deleteById(id);
@@ -138,7 +142,7 @@ public class SmsController{
         return "删除成功";
     }
     //配置学生班级(bug:设置相应老师)
-    @PutMapping("/setclass/{id}")
+    @PutMapping("/user/setclass/{id}")
     public Stu setclass(@PathVariable("id") Integer id,
                         @RequestParam("clazz") String clazz){
         Optional stu=repository.findById(id);
@@ -153,12 +157,12 @@ public class SmsController{
         return null;
     }
     //查看辅导员信息
-    @GetMapping("/findteacher")
+    @GetMapping("/user/findteacher")
     public List<Teacher> findall(){
         return teaRepository.findAll();
     }
     //增加辅导员
-    @PostMapping("/addteacher")
+    @PostMapping("/user/addteacher")
     public Teacher add(@RequestParam("id") Integer id,@RequestParam("name") String name,
                        @RequestParam("tel") Long tel,@RequestParam("qq") Integer qq,
                        @RequestParam("wechatnum") String wechat,@RequestParam("clazz") String clazz){
@@ -178,7 +182,7 @@ public class SmsController{
         return teaRepository.save(teacher);
     }
     //修改辅导员信息
-    @PutMapping("/modifyteacher/{id}")
+    @PutMapping("/user/modifyteacher/{id}")
     public Teacher modify(@PathVariable("id") Integer id,
                           @RequestParam("tel") Long tel,@RequestParam("qq") Integer qq,
                           @RequestParam("wechatnum") String wechat){
@@ -193,14 +197,14 @@ public class SmsController{
         return null;
     }
     //删除辅导员
-    @GetMapping("/deleteteacher")
+    @GetMapping("/user/deleteteacher")
     public String deleteteacher(@RequestParam("id") Integer id){
         teaRepository.deleteById(id);
         userRepository.deleteById(id);
         return "删除成功";
     }
     //配置辅导员班级
-    @PutMapping("/updateclass/{id}")
+    @PutMapping("/user/updateclass/{id}")
     public  String updateclass(@PathVariable("id") Integer id,@RequestParam("clazz") String clazz,
                             @RequestParam("teacher") String teacher){
             Optional tea=teaRepository.findById(id);
