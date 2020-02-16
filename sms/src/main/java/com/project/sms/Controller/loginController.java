@@ -38,9 +38,14 @@ public class loginController {
     }
     @RequestMapping("/noauth")
     public String unauthorized(){
-        return "权限不足，无法访问";
+        return "未授权，无法访问";
     }
 
-    @GetMapping("/logout")
-    public String logout(){return "退出";}
+    @GetMapping("/user/logout")
+    public String logout(){
+        //获取当前用户
+        Subject subject= SecurityUtils.getSubject();
+        subject.logout();
+        return "退出";
+    }
 }

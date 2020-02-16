@@ -213,7 +213,6 @@ public class SmsController{
                 Teacher t = (Teacher) tea.get();
                 t.setClazz(clazz);
                 teaRepository.save(t);
-                //repository.updateTeacher(teacher,clazz);*
                 return "修改成功";
             }
             return null;
