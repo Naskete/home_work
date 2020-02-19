@@ -36,11 +36,14 @@ public class loginController {
             return "密码错误";
         }
     }
+
+    //未授权界面
     @RequestMapping("/noauth")
     public String unauthorized(){
         return "未授权，无法访问";
     }
 
+    //登出
     @GetMapping("/user/logout")
     public String logout(){
         //获取当前用户
